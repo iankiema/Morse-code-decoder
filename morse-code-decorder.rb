@@ -18,7 +18,14 @@ class MorseCodeDecoder
   def self.decode_char(morse_char)
     MORSE_CODE_DICT.key(morse_char)
   end
+ def self.decode_word(morse_word)
+    morse_word.split(' ').map {|char| decode_char(char)}.join
+  end
 
+  def self.decode_message(morse_message)
+    morse_words = morse_message.split('   ')
+    morse_words.map { |word| decode_word(word) }.join(' ')
+  end
 end
 
 morse_message = ".- -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ..."
